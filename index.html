@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Disaster Dashboard</title>
+</head>
+
+<body>
+
+    <h1>Top 10 Highest Magnitudes</h1>
+
+    <table border="1">
+
+        <tr>
+            <th>Location</th>
+            <th>Magnitude</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+
+        {% for row in disasters %}
+
+        <tr>
+            <td>{{ row.location }}</td>
+            <td>{{ row.magnitude }}</td>
+            <td>{{ row.latitude }}</td>
+            <td>{{ row.longitude }}</td>
+        </tr>
+
+        {% endfor %}
+
+    </table>
+
+    <hr>
+
+    <h2>Find Country</h2>
+
+    <form method="POST">
+
+        <input type="text"
+               name="latitude"
+               placeholder="Enter latitude"
+               required>
+
+        <br><br>
+
+        <input type="text"
+               name="longitude"
+               placeholder="Enter longitude"
+               required>
+
+        <br><br>
+
+        <button type="submit">
+            Get Country
+        </button>
+
+    </form>
+
+    {% if country %}
+
+        <h3>Country: {{ country }}</h3>
+
+        <a href="{{ map_url }}" target="_blank">
+            Open in Google Maps
+        </a>
+
+    {% endif %}
+
+    {% if error %}
+
+        <h3>Error: {{ error }}</h3>
+
+    {% endif %}
+
+</body>
+
+</html>
